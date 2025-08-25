@@ -1,0 +1,19 @@
+ @import url('https://fonts.googleapis.com/css2?family=Playwrite+CA:wght@100..400&display=swap');
+ *{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.myName{
+    font-family:"Playwrite CA", cursive;
+    font-weight: 300;
+}
+
+.mainContainer{
+    width:100%;
+    /* max-width: 670px; */
+    border: 1px solid red;
+    
+}
