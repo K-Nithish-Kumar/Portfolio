@@ -1,5 +1,5 @@
- @import url('https://fonts.googleapis.com/css2?family=Playwrite+CA:wght@100..400&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CA:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
  *{
     margin:0;
     padding:0;
@@ -12,6 +12,12 @@ body{
     height:100%;
     width:100%;
     background: linear-gradient(90deg, #000, #010);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+    opacity: 1;
 }
 
 .myName{
@@ -24,8 +30,9 @@ body{
 .navContainer{
     width:100%;
     height:10vh;
+    background-color: rgb(231, 46, 14);
     /* max-width: 670px; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* display: flex;
     justify-content: space-between;
     align-items: center; */
@@ -34,9 +41,9 @@ body{
 .navBar{
     width: 100%;
     height:100%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav ul{
@@ -45,6 +52,7 @@ body{
     list-style: none;
     margin: 10px;
     padding: 10px;
+    /* transform: scaleX(0); */
     
 }
 
@@ -52,30 +60,44 @@ body{
     font-family: "Josefin Sans", sans-serif;
     font-size: 19px;
     font-weight: 500;
-    margin-left: 70px;    
-    transition: all 3s ease-in;
+    margin-left: 70px;
+    letter-spacing: 2px;    
+    position: relative;
+    /* transform: scaleX(0); */
 }
 
-.nav ul li:hover::before{
+.nav ul li::after{
     content: " ";
-    position: relative;
-    top:25px;
-    right:15px;
+    position: absolute;
+    left:0;
+    bottom: 0;
     display: flex;
-    height:5px;
-    width:7vw;
+    height:2px;
+    width:100%;
     /* border: 1px solid green; */
     border-radius: 30px;
-    background:rgb(231, 46, 14);
+    background:rgb(233, 255, 254);
+    transform: scaleX(0);
+    transition:transform 0.3s ease-in-out;
+}
 
+.nav ul li:hover::after{
+    cursor:pointer;
+    transform: scaleX(1);
 }
 
 .inFoContainer{
     width:100%;
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     margin-top:20px;
     padding:20px;
+    position: relative;
+    min-height: 47vh;
     
+}
+
+.inFoContainer .domain-experience{
+    padding:5px;
 }
 
 .nameInInfo{
@@ -84,6 +106,81 @@ body{
 }
 
 span{
-    color:rgb(231, 46, 14)
+    color:rgb(231, 46, 14);
 }
 
+.profileContainer{
+    height:40vh;
+    width:20vw;
+    /* border-radius: 50%; */
+    /* background-repeat: repeat; */
+    position: absolute;
+    right:120px;
+    top:20px;
+    /* border:1px solid yellow; */
+}
+
+.profile-bg{
+    position:absolute;
+    height:100%;
+    width:100%
+}
+
+.aboutContainer{
+    width:100%;
+    /* border:1px solid lightgreen; */
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.aboutHeading{
+    padding-left: 24px;
+    margin-bottom: 10px;
+}
+
+.aboutMe{
+    width:50vw;
+    /* border:1px solid yellow; */
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.aboutContainer .domain-experience{
+    padding-left: 24px;
+}
+
+.domain-experience{
+    line-height: 28px;
+}
+
+.Skills-container{
+    width:100%;
+}
+
+.Skills-heading{
+    padding-left:24px;
+}
+
+.html{
+    padding: 15px;
+}
+
+label{
+    /* display:inline; */
+    margin-right: 10px;
+    padding-left: 13px;
+}
+
+.Progress-main{
+    height:2vh;
+    width:30%;
+    background-color:white;
+    display:inline-block;
+}
+
+.progress-percentage{
+    height:100%;
+    width:80%;
+    background-color:rgb(231, 46, 14);
+}
