@@ -1,4 +1,5 @@
 const form = document.getElementById("contactForm");
+const BACKEND_URL="https://my-portfolio-backend13.onrender.com";
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault(); // VERY IMPORTANT
@@ -11,7 +12,7 @@ form.addEventListener("submit", async (e) => {
   console.log({ name, email, message });
 
   try {
-    const response = await fetch("http://localhost:5000/contact", {
+    const response = await fetch(`${BACKEND_URL}/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
