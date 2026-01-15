@@ -1,3 +1,46 @@
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // VERY IMPORTANT
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  console.log("Button clicked"); // DEBUG
+  console.log({ name, email, message });
+
+  try {
+    const response = await fetch("http://localhost:5000/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, message })
+    });
+
+    console.log("Response status:", response.status);
+
+    const data = await response.json();
+    console.log("Response data:", data);
+
+    if (data.success) {
+      alert("Message sent successfully");
+      form.reset();
+    } else {
+      alert("Failed: " + data.message);
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Request failed");
+  }
+});
+
+
+
+
+
 const projectCard = document.getElementById('project-card');
 
 
@@ -47,43 +90,6 @@ projectCard.innerHTML = projects.map(project =>
 ).join("");
 
 projectCard.appendChild(card);
-
-
-
-const form = document.getElementById("contactForm");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value,
-  };
-
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await res.json();
-
-    alert(data.message);
-    form.reset();
-  } catch (error) {
-    alert("Something went wrong!");
-  }
-});
-
-
-
-
-
-
 
 
 
