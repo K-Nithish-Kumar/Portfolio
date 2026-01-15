@@ -1,41 +1,38 @@
-const form = document.getElementById("contactForm");
-const BACKEND_URL="https://my-portfolio-backend13.onrender.com";
+const form = document.getElementById('contactForm');
+const submitBtn = form.querySelector('button[type="submit"]');
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault(); // VERY IMPORTANT
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
+    const formData = new FormData(form);
+    formData.append("access_key", "e3e56952-9af2-4a60-a862-59359b4dd456");
 
-  console.log("Button clicked"); // DEBUG
-  console.log({ name, email, message });
+    const originalText = submitBtn.textContent;
 
-  try {
-    const response = await fetch(`${BACKEND_URL}/contact`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, message })
-    });
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
 
-    console.log("Response status:", response.status);
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
 
-    const data = await response.json();
-    console.log("Response data:", data);
+        const data = await response.json();
 
-    if (data.success) {
-      alert("Message sent successfully");
-      form.reset();
-    } else {
-      alert("Failed: " + data.message);
+        if (response.ok) {
+            alert("Success! Your message has been sent.");
+            form.reset();
+        } else {
+            alert("Error: " + data.message);
+        }
+
+    } catch (error) {
+        alert("Something went wrong. Please try again.");
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     }
-
-  } catch (err) {
-    console.error(err);
-    alert("Request failed");
-  }
 });
 
 
